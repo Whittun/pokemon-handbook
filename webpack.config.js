@@ -1,21 +1,29 @@
 const path = require("path");
 
 module.exports = {
-  entry: "./src/index.ts",
+  entry: "./src/index.tsx",
+  output: {
+    path: path.resolve(__dirname, "dist"),
+    filename: "bundle.js",
+    publicPath: "/",
+  },
+  resolve: {
+    extensions: [".ts", ".tsx", ".js", ".jsx"],
+  },
   module: {
     rules: [
       {
-        test: /\.tsx?$/,
-        use: "ts-loader",
+        test: /\.(ts|tsx)$/,
         exclude: /node_modules/,
+        use: "ts-loader",
       },
     ],
   },
-  resolve: {
-    extensions: [".tsx", ".ts", ".js"],
+  devServer: {
+    static: path.join(__dirname, "dist"),
+    compress: true,
+    port: 3000,
+    historyApiFallback: true,
   },
-  output: {
-    filename: "bundle.js",
-    path: path.resolve(__dirname, "dist"),
-  },
+  mode: "development",
 };
