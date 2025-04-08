@@ -6,5 +6,8 @@ export default tseslint.config(
   eslint.configs.recommended,
   tseslint.configs.recommended,
   pluginReact.configs.flat.recommended,
-  pluginReact.configs.flat['jsx-runtime']
+  pluginReact.configs.flat['jsx-runtime'],
+  {
+    ignores: ['webpack.config.js', 'dist'],
+  }
 );
